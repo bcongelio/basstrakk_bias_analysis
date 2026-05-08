@@ -1,0 +1,10 @@
+a04 <- readRDS("data/analysis_04_venue_model.rds")
+print(summary(a04$model))
+print(a04$venue_effects_full |> mutate(across(where(is.double), \(x) round(x, 4))))
+print(a04$venue_marginal |> mutate(across(where(is.double), \(x) round(x, 4))))
+print(a04$var_components)
+cat(sprintf("ICC (angler-level): %.4f\n", a04$icc$ICC_adjusted))
+print(head(a04$tournament_summary, 10) |>
+        mutate(across(where(is.double), \(x) round(x, 3))))
+print(tail(a04$tournament_summary, 10) |>
+        mutate(across(where(is.double), \(x) round(x, 3))))
